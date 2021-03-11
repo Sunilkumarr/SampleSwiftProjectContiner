@@ -1,0 +1,26 @@
+PODS:
+  - Applozic (8.0.0):
+    - ApplozicCore (~> 8.0.0)
+    - SDWebImage (~> 5.9.2)
+  - ApplozicCore (8.0.0)
+  - SDWebImage (5.9.5):
+    - SDWebImage/Core (= 5.9.5)
+  - SDWebImage/Core (5.9.5)
+
+DEPENDENCIES:
+  - Applozic (~> 8.0.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Applozic
+    - ApplozicCore
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Applozic: 7027e5af20ecb8482e88df67bbc6f657f4f835ff
+  ApplozicCore: 4b510e13ba44772f168c8900af0811a7e651e723
+  SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
+
+PODFILE CHECKSUM: a99db2f50fe1b090bccd867f95ff7c1db5fc1e5a
+
+COCOAPODS: 1.10.1
