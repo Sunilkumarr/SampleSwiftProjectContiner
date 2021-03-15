@@ -26,7 +26,11 @@ class ContinerViewController : UIViewController {
 
         let rightStartNewButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(startNewConversationVC(_:)))
 
-        self.navigationItem.rightBarButtonItem = rightStartNewButton
+        let profileImage = ALUIUtilityClass .getImageFromFramworkBundle("contact_default.png").scale(with: CGSize(width: 25, height: 25))
+
+        let profileButton = UIBarButtonItem(image: profileImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(startUserProfile(_:)))
+
+        self.navigationItem.rightBarButtonItems = [rightStartNewButton, profileButton]
 
     }
 
@@ -94,5 +98,39 @@ class ContinerViewController : UIViewController {
         if let contactVC = contactVC {
             navigationController?.pushViewController(contactVC, animated: true)
         }
+    }
+
+    @objc func startUserProfile(_ sender: Any?)  {
+        let storyboard = UIStoryboard(name: "Applozic", bundle: Bundle(for: ALChatViewController.self))
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ALUserProfileView") as? ALUserProfileVC
+        if let profileVC = profileVC {
+            navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+}
+
+
+
+extension UIImage {
+    func scale(with size: CGSize) -> UIImage? {
+        var scaledImageRect = CGRect.zero
+
+        let aspectWidth: CGFloat = size.width / self.size.width
+        let aspectHeight: CGFloat = size.height / self.size.height
+        let aspectRatio: CGFloat = min(aspectWidth, aspectHeight)
+
+        scaledImageRect.size.width = self.size.width * aspectRatio
+        scaledImageRect.size.height = self.size.height * aspectRatio
+        scaledImageRect.origin.x = (size.width - scaledImageRect.size.width) / 2.0
+        scaledImageRect.origin.y = (size.height - scaledImageRect.size.height) / 2.0
+
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+
+        draw(in: scaledImageRect)
+
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return scaledImage
     }
 }
